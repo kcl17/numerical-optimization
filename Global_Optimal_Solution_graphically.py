@@ -33,3 +33,35 @@ plt.title('Global Optimal Solution of f(x) = -10Cos(πx - 2.2) + (x + 1.5)x')
 
 # Show the plot
 plt.show()
+
+
+,,,
+import numpy as np
+import matplotlib.pyplot as plt
+
+def custom_curve(val):
+    return -8 * np.cos(np.pi * val - 2.2) + (val + 1.5) * val + 2 * np.sin(0.7 * np.pi * val)
+
+inputs = np.linspace(-2, 3, 100)
+outputs = custom_curve(inputs)
+plt.plot(inputs, outputs)
+
+local_maxima = []
+local_minima = []
+for i in range(1, len(inputs) - 1):
+    if outputs[i] > outputs[i - 1] and outputs[i] > outputs[i + 1]:
+        local_maxima.append(inputs[i])
+    elif outputs[i] < outputs[i - 1] and outputs[i] < outputs[i + 1]:
+        local_minima.append(inputs[i])
+
+gblMax = max(local_maxima)
+gblMin = min(local_minima)
+
+plt.plot(gblMax, custom_curve(gblMax), 'o', markersize=10, color='red')
+plt.plot(gblMin, custom_curve(gblMin), 'o', markersize=10, color='blue')
+plt.xlabel('X')
+plt.ylabel('Y')
+plt.title('Result  Ques - 5')
+
+# Display the modified plot
+plt.show(),,,
